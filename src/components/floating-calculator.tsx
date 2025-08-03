@@ -109,7 +109,7 @@ export function FloatingCalculator() {
                 {row.map((btn) => (
                   <Button
                     key={btn}
-                    variant={["C", "±", "%", "÷", "×", "-", "+", "="].includes(btn) ? "secondary" : "outline"}
+                    variant={["C", "±", "%", "÷", "×", "-", "+", "="].includes(btn) ? "secondary" : "outline-solid"}
                     className={`h-12 ${btn === "0" ? "col-span-2" : ""} ${btn === "=" ? "col-span-2 bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
                     onClick={() => {
                       if (btn === "C") {

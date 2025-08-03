@@ -50,7 +50,7 @@ export function QuickActions() {
   }
 
   return (
-    <Card className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
+    <Card className="bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
       <CardContent className="p-4">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -72,7 +72,7 @@ export function QuickActions() {
                 return (
                   <Button
                     key={item.label}
-                    variant={isRecentlyAdded ? "default" : "outline"}
+                    variant={isRecentlyAdded ? "default" : "outline-solid"}
                     size="sm"
                     onClick={() => handleQuickAdd(item, "expense")}
                     className={`h-auto p-2 flex flex-col items-center gap-1 min-w-[70px] ${
@@ -105,7 +105,7 @@ export function QuickActions() {
                 return (
                   <Button
                     key={item.label}
-                    variant={isRecentlyAdded ? "default" : "outline"}
+                    variant={isRecentlyAdded ? "default" : "outline-solid"}
                     size="sm"
                     onClick={() => handleQuickAdd(item, "income")}
                     className={`h-auto p-2 flex flex-col items-center gap-1 min-w-[70px] ${

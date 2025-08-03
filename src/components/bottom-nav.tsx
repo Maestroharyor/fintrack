@@ -28,7 +28,7 @@ export function BottomNav() {
               className={cn(
                 "flex flex-col items-center gap-1 px-3 py-2 text-xs transition-all duration-200 rounded-lg",
                 isActive
-                  ? "text-primary bg-gradient-to-t from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
+                  ? "text-primary bg-linear-to-t from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
               )}
             >

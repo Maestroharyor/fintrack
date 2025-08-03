@@ -28,7 +28,7 @@ export default function ClientLayout({
             children
           ) : (
             <SidebarProvider>
-              <div className="flex min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+              <div className="flex min-h-screen bg-linear-to-br from-background via-background to-muted/20">
                 <DesktopNav />
                 <main className="flex-1 pb-16 md:pb-0">{children}</main>
               </div>

@@ -63,7 +63,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
       <MobileHeader title="Settings" />
 
       <div className="p-4 space-y-6">
@@ -80,16 +80,16 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <Label htmlFor="theme">Theme</Label>
               <div className="flex items-center gap-2">
-                <Button variant={theme === "light" ? "default" : "outline"} size="sm" onClick={() => setTheme("light")}>
+                <Button variant={theme === "light" ? "default" : "outline-solid"} size="sm" onClick={() => setTheme("light")}>
                   <Sun className="h-4 w-4 mr-2" />
                   Light
                 </Button>
-                <Button variant={theme === "dark" ? "default" : "outline"} size="sm" onClick={() => setTheme("dark")}>
+                <Button variant={theme === "dark" ? "default" : "outline-solid"} size="sm" onClick={() => setTheme("dark")}>
                   <Moon className="h-4 w-4 mr-2" />
                   Dark
                 </Button>
                 <Button
-                  variant={theme === "system" ? "default" : "outline"}
+                  variant={theme === "system" ? "default" : "outline-solid"}
                   size="sm"
                   onClick={() => setTheme("system")}
                 >

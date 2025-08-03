@@ -35,15 +35,15 @@ export function DesktopNav() {
   const pathname = usePathname()
 
   return (
-    <Sidebar className="hidden md:flex border-r bg-gradient-to-b from-background to-muted/20">
+    <Sidebar className="hidden md:flex border-r bg-linear-to-b from-background to-muted/20">
       <SidebarHeader>
         <div className="px-4 py-6">
           <div className="flex items-center gap-2 mb-4">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-blue-600 to-purple-600 flex items-center justify-center">
               <Wallet className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="text-lg font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 FinancePro
               </h2>
               <p className="text-xs text-muted-foreground">Personal Finance</p>
@@ -65,7 +65,7 @@ export function DesktopNav() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.href}
-                    className="h-10 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-950 dark:hover:to-purple-950"
+                    className="h-10 hover:bg-linear-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-950 dark:hover:to-purple-950"
                   >
                     <Link href={item.href}>
                       <item.icon className="h-4 w-4" />
@@ -89,7 +89,7 @@ export function DesktopNav() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.href}
-                    className="h-10 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-950 dark:hover:to-purple-950"
+                    className="h-10 hover:bg-linear-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-950 dark:hover:to-purple-950"
                   >
                     <Link href={item.href}>
                       <item.icon className="h-4 w-4" />
