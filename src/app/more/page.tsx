@@ -1,9 +1,18 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Target, Repeat, Settings, Bell, HelpCircle, Shield, Download, LogOut } from "lucide-react"
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Target,
+  Repeat,
+  Settings,
+  Bell,
+  HelpCircle,
+  Shield,
+  Download,
+  LogOut,
+} from "lucide-react";
 
 export default function MorePage() {
   const menuItems = [
@@ -35,7 +44,7 @@ export default function MorePage() {
       href: "/settings",
       color: "text-gray-600",
     },
-  ]
+  ];
 
   const supportItems = [
     {
@@ -56,7 +65,7 @@ export default function MorePage() {
       icon: Download,
       href: "#",
     },
-  ]
+  ];
 
   return (
     <div className="p-4 space-y-6">
@@ -78,7 +87,9 @@ export default function MorePage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-medium">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -93,7 +104,10 @@ export default function MorePage() {
         <h2 className="text-lg font-semibold">Support</h2>
         <div className="grid grid-cols-1 gap-4">
           {supportItems.map((item) => (
-            <Card key={item.title} className="hover:shadow-md transition-shadow cursor-pointer">
+            <Card
+              key={item.title}
+              className="hover:shadow-md transition-shadow cursor-pointer"
+            >
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <div className="p-2 rounded-lg bg-muted text-gray-600">
@@ -101,7 +115,9 @@ export default function MorePage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-medium">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -122,7 +138,9 @@ export default function MorePage() {
                 </div>
                 <div>
                   <p className="font-medium">John Doe</p>
-                  <p className="text-sm text-muted-foreground">john.doe@example.com</p>
+                  <p className="text-sm text-muted-foreground">
+                    john.doe@example.com
+                  </p>
                 </div>
               </div>
 
@@ -140,10 +158,14 @@ export default function MorePage() {
       {/* App Info */}
       <Card>
         <CardContent className="p-4 text-center">
-          <p className="text-sm text-muted-foreground">Personal Finance Planner v1.0.0</p>
-          <p className="text-xs text-muted-foreground mt-1">Built with Next.js and Tailwind CSS</p>
+          <p className="text-sm text-muted-foreground">
+            Personal Finance Planner v1.0.0
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Built with Next.js and Tailwind CSS
+          </p>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
