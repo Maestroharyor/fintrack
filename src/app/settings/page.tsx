@@ -1,66 +1,76 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { useFinanceStore } from "@/lib/store"
-import { useTheme } from "next-themes"
-import { Moon, Sun, Plus, X } from "lucide-react"
-import { MobileHeader } from "@/components/mobile-header"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { useSettings, useFinanceActions } from "@/lib/store";
+import { useTheme } from "next-themes";
+import { Moon, Sun, Plus, X } from "lucide-react";
+import { MobileHeader } from "@/components/mobile-header";
 
 export default function SettingsPage() {
-  const { settings, updateSettings } = useFinanceStore()
-  const { theme, setTheme } = useTheme()
-  const [newCategory, setNewCategory] = useState("")
-  const [newTag, setNewTag] = useState("")
+  const settings = useSettings();
+  const { updateSettings } = useFinanceActions();
+  const { theme, setTheme } = useTheme();
+  const [newCategory, setNewCategory] = useState("");
+  const [newTag, setNewTag] = useState("");
 
   const handleCurrencyChange = (currency: string) => {
-    updateSettings({ currency })
-  }
+    updateSettings({ currency });
+  };
 
-  const handleNotificationChange = (type: keyof typeof settings.notifications, value: boolean) => {
+  const handleNotificationChange = (
+    type: keyof typeof settings.notifications,
+    value: boolean
+  ) => {
     updateSettings({
       notifications: {
         ...settings.notifications,
         [type]: value,
       },
-    })
-  }
+    });
+  };
 
   const addCategory = () => {
     if (newCategory && !settings.categories.includes(newCategory)) {
       updateSettings({
         categories: [...settings.categories, newCategory],
-      })
-      setNewCategory("")
+      });
+      setNewCategory("");
     }
-  }
+  };
 
   const removeCategory = (category: string) => {
     updateSettings({
       categories: settings.categories.filter((c) => c !== category),
-    })
-  }
+    });
+  };
 
   const addTag = () => {
     if (newTag && !settings.tags.includes(newTag)) {
       updateSettings({
         tags: [...settings.tags, newTag],
-      })
-      setNewTag("")
+      });
+      setNewTag("");
     }
-  }
+  };
 
   const removeTag = (tag: string) => {
     updateSettings({
       tags: settings.tags.filter((t) => t !== tag),
-    })
-  }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
@@ -80,11 +90,19 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <Label htmlFor="theme">Theme</Label>
               <div className="flex items-center gap-2">
-                <Button variant={theme === "light" ? "default" : "outline-solid"} size="sm" onClick={() => setTheme("light")}>
+                <Button
+                  variant={theme === "light" ? "default" : "outline-solid"}
+                  size="sm"
+                  onClick={() => setTheme("light")}
+                >
                   <Sun className="h-4 w-4 mr-2" />
                   Light
                 </Button>
-                <Button variant={theme === "dark" ? "default" : "outline-solid"} size="sm" onClick={() => setTheme("dark")}>
+                <Button
+                  variant={theme === "dark" ? "default" : "outline-solid"}
+                  size="sm"
+                  onClick={() => setTheme("dark")}
+                >
                   <Moon className="h-4 w-4 mr-2" />
                   Dark
                 </Button>
@@ -108,7 +126,10 @@ export default function SettingsPage() {
           <CardContent>
             <div className="flex items-center justify-between">
               <Label htmlFor="currency">Default Currency</Label>
-              <Select value={settings.currency} onValueChange={handleCurrencyChange}>
+              <Select
+                value={settings.currency}
+                onValueChange={handleCurrencyChange}
+              >
                 <SelectTrigger className="w-[120px]">
                   <SelectValue />
                 </SelectTrigger>
@@ -144,7 +165,11 @@ export default function SettingsPage() {
 
             <div className="flex flex-wrap gap-2">
               {settings.categories.map((category) => (
-                <Badge key={category} variant="secondary" className="flex items-center gap-1">
+                <Badge
+                  key={category}
+                  variant="secondary"
+                  className="flex items-center gap-1"
+                >
                   {category}
                   <Button
                     variant="ghost"
@@ -181,7 +206,11 @@ export default function SettingsPage() {
 
             <div className="flex flex-wrap gap-2">
               {settings.tags.map((tag) => (
-                <Badge key={tag} variant="outline" className="flex items-center gap-1">
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="flex items-center gap-1"
+                >
                   {tag}
                   <Button
                     variant="ghost"
@@ -206,36 +235,48 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="summaries">Monthly Summaries</Label>
-                <p className="text-sm text-muted-foreground">Receive monthly spending summaries</p>
+                <p className="text-sm text-muted-foreground">
+                  Receive monthly spending summaries
+                </p>
               </div>
               <Switch
                 id="summaries"
                 checked={settings.notifications.summaries}
-                onCheckedChange={(checked) => handleNotificationChange("summaries", checked)}
+                onCheckedChange={(checked) =>
+                  handleNotificationChange("summaries", checked)
+                }
               />
             </div>
 
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="billReminders">Bill Reminders</Label>
-                <p className="text-sm text-muted-foreground">Get reminded about upcoming bills</p>
+                <p className="text-sm text-muted-foreground">
+                  Get reminded about upcoming bills
+                </p>
               </div>
               <Switch
                 id="billReminders"
                 checked={settings.notifications.billReminders}
-                onCheckedChange={(checked) => handleNotificationChange("billReminders", checked)}
+                onCheckedChange={(checked) =>
+                  handleNotificationChange("billReminders", checked)
+                }
               />
             </div>
 
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="goalReminders">Goal Reminders</Label>
-                <p className="text-sm text-muted-foreground">Track progress on savings goals</p>
+                <p className="text-sm text-muted-foreground">
+                  Track progress on savings goals
+                </p>
               </div>
               <Switch
                 id="goalReminders"
                 checked={settings.notifications.goalReminders}
-                onCheckedChange={(checked) => handleNotificationChange("goalReminders", checked)}
+                onCheckedChange={(checked) =>
+                  handleNotificationChange("goalReminders", checked)
+                }
               />
             </div>
           </CardContent>
@@ -262,5 +303,5 @@ export default function SettingsPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

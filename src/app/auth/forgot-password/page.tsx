@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Mail, ArrowLeft } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Mail, ArrowLeft } from "lucide-react";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("")
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitted(true)
-  }
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
 
   if (isSubmitted) {
     return (
@@ -25,7 +25,9 @@ export default function ForgotPasswordPage() {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Check Your Email</CardTitle>
-            <p className="text-muted-foreground">We've sent a password reset link to {email}</p>
+            <p className="text-muted-foreground">
+              We've sent a password reset link to {email}
+            </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center space-y-4">
@@ -33,7 +35,11 @@ export default function ForgotPasswordPage() {
                 Didn't receive the email? Check your spam folder or try again.
               </p>
 
-              <Button variant="outline" onClick={() => setIsSubmitted(false)} className="w-full">
+              <Button
+                variant="outline"
+                onClick={() => setIsSubmitted(false)}
+                className="w-full"
+              >
                 Try Again
               </Button>
 
@@ -47,7 +53,7 @@ export default function ForgotPasswordPage() {
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -56,7 +62,8 @@ export default function ForgotPasswordPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Reset Password</CardTitle>
           <p className="text-muted-foreground">
-            Enter your email address and we'll send you a link to reset your password
+            Enter your email address and we'll send you a link to reset your
+            password
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -93,5 +100,5 @@ export default function ForgotPasswordPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

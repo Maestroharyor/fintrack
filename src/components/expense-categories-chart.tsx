@@ -1,51 +1,69 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useFinanceStore } from "@/lib/store"
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTransactions, useCurrentMonth, useSettings } from "@/lib/store";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from "recharts";
 
-const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4", "#84cc16"]
+const COLORS = [
+  "#3b82f6",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#06b6d4",
+  "#84cc16",
+];
 
 export function ExpenseCategoriesChart() {
-  const { transactions, currentMonth, settings } = useFinanceStore()
+  const transactions = useTransactions();
+  const currentMonth = useCurrentMonth();
+  const settings = useSettings();
 
-  const currentMonthExpenses = transactions.filter((t) => t.type === "expense" && t.date.startsWith(currentMonth))
+  const currentMonthExpenses = transactions.filter(
+    (t) => t.type === "expense" && t.date.startsWith(currentMonth)
+  );
 
-  const categoryData = currentMonthExpenses.reduce(
-    (acc, transaction) => {
-      const existing = acc.find((item) => item.name === transaction.category)
-      if (existing) {
-        existing.value += transaction.amount
-      } else {
-        acc.push({
-          name: transaction.category,
-          value: transaction.amount,
-        })
-      }
-      return acc
-    },
-    [] as { name: string; value: number }[],
-  )
+  const categoryData = currentMonthExpenses.reduce((acc, transaction) => {
+    const existing = acc.find((item) => item.name === transaction.category);
+    if (existing) {
+      existing.value += transaction.amount;
+    } else {
+      acc.push({
+        name: transaction.category,
+        value: transaction.amount,
+      });
+    }
+    return acc;
+  }, [] as { name: string; value: number }[]);
 
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat("en-NG", {
       style: "currency",
       currency: settings.currency,
       minimumFractionDigits: 0,
-    }).format(amount)
-  }
+    }).format(amount);
+  };
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-background border rounded-lg p-3 shadow-lg">
           <p className="font-medium">{payload[0].name}</p>
-          <p className="text-sm text-muted-foreground">{formatAmount(payload[0].value)}</p>
+          <p className="text-sm text-muted-foreground">
+            {formatAmount(payload[0].value)}
+          </p>
         </div>
-      )
+      );
     }
-    return null
-  }
+    return null;
+  };
 
   if (categoryData.length === 0) {
     return (
@@ -59,7 +77,7 @@ export function ExpenseCategoriesChart() {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -81,7 +99,10 @@ export function ExpenseCategoriesChart() {
                 dataKey="value"
               >
                 {categoryData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
                 ))}
               </Pie>
               <Tooltip content={<CustomTooltip />} />
@@ -91,5 +112,5 @@ export function ExpenseCategoriesChart() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
