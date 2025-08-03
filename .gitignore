@@ -25,3 +25,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# vscode, cursor, windsurf
+.vscode
+.cursor
+.windsurf
+.cursorrules
+.cursorrules.md
+.cursorrules.txt
+.cursorrules.md
