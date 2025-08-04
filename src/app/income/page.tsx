@@ -60,29 +60,13 @@ export default function IncomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-green-600 flex items-center justify-center">
-                <TrendingUp className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">Income</h1>
-                <p className="text-sm text-muted-foreground">
-                  Track and manage your income sources
-                </p>
-              </div>
-            </div>
-            <TransactionModal type="income" />
-          </div>
-        </div>
-      </div>
-
-      {/* Filters and Stats */}
+    <div className="max-w-7xl mx-auto">
       <div className="p-6 space-y-6">
+        {/* Add Transaction Button */}
+        <div className="flex justify-end">
+          <TransactionModal type="income" />
+        </div>
+
         {/* Summary Card */}
         <Card className="border shadow-sm">
           <CardHeader className="pb-4">

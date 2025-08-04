@@ -49,6 +49,7 @@ interface FinanceState {
   goals: Goal[];
   settings: Settings;
   currentMonth: string;
+  showAmounts: boolean;
 }
 
 interface FinanceActions {
@@ -66,6 +67,7 @@ interface FinanceActions {
 
   updateSettings: (settings: Partial<Settings>) => void;
   setCurrentMonth: (month: string) => void;
+  toggleShowAmounts: () => void;
 }
 
 interface FinanceStore extends FinanceState {
@@ -180,6 +182,7 @@ const useFinanceStore = create<FinanceStore>()(
       budgets: dummyBudgets,
       goals: dummyGoals,
       currentMonth: getCurrentMonth(),
+      showAmounts: true,
       settings: {
         currency: "NGN",
         theme: "light",
@@ -287,6 +290,10 @@ const useFinanceStore = create<FinanceStore>()(
         setCurrentMonth: (month) => {
           set({ currentMonth: month });
         },
+
+        toggleShowAmounts: () => {
+          set((state) => ({ showAmounts: !state.showAmounts }));
+        },
       },
     }),
     {
@@ -303,6 +310,8 @@ export const useGoals = () => useFinanceStore((state) => state.goals);
 export const useSettings = () => useFinanceStore((state) => state.settings);
 export const useCurrentMonth = () =>
   useFinanceStore((state) => state.currentMonth);
+export const useShowAmounts = () =>
+  useFinanceStore((state) => state.showAmounts);
 
 // 🎉 one selector for all our actions
 export const useFinanceActions = () =>

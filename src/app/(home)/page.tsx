@@ -1,13 +1,11 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MonthSelector } from "@/components/month-selector";
 import { BudgetProgress } from "@/components/budget-progress";
 import { GoalTracker } from "@/components/goal-tracker";
 import { QuickActions } from "@/components/quick-actions";
 import { SpendingInsights } from "@/components/spending-insights";
 import { RecentActivity } from "@/components/recent-activity";
-import { SearchCommand } from "@/components/search-command";
 import { FloatingCalculator } from "@/components/floating-calculator";
 import {
   useTransactions,
@@ -15,16 +13,10 @@ import {
   useGoals,
   useSettings,
   useCurrentMonth,
+  useShowAmounts,
   useFinanceActions,
 } from "@/lib/store";
-import {
-  TrendingUp,
-  TrendingDown,
-  PiggyBank,
-  Eye,
-  EyeOff,
-  Sparkles,
-} from "lucide-react";
+import { TrendingUp, TrendingDown, PiggyBank } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -40,8 +32,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
 
 export default function Dashboard() {
   const transactions = useTransactions();
@@ -49,7 +39,7 @@ export default function Dashboard() {
   const goals = useGoals();
   const settings = useSettings();
   const currentMonth = useCurrentMonth();
-  const [showAmounts, setShowAmounts] = useState(true);
+  const showAmounts = useShowAmounts();
 
   // Filter transactions for current month
   const currentMonthTransactions = transactions.filter((t) =>
@@ -101,42 +91,7 @@ export default function Dashboard() {
   const COLORS = ["#1877f2", "#42a5f5", "#90caf9", "#bbdefb", "#e3f2fd"];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header Section - Full Width */}
-      <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border w-full">
-        <div className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-primary flex items-center justify-center">
-                <Sparkles className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">Fintrack</h1>
-                <p className="text-sm text-muted-foreground hidden md:block">
-                  Your financial companion
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <SearchCommand />
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setShowAmounts(!showAmounts)}
-                className="h-10 w-10"
-              >
-                {showAmounts ? (
-                  <Eye className="h-4 w-4" />
-                ) : (
-                  <EyeOff className="h-4 w-4" />
-                )}
-              </Button>
-              <MonthSelector />
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div>
       {/* Main Content with Bottom Padding and Max Width */}
       <div className="max-w-7xl mx-auto">
         <div className="p-6 space-y-8 pb-32">
@@ -214,13 +169,13 @@ export default function Dashboard() {
           </div>
 
           {/* Insights and Recent Activity */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
             <SpendingInsights />
             <RecentActivity />
           </div>
 
           {/* Charts */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
             <Card className="border shadow-sm">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-3 text-lg">
@@ -236,7 +191,7 @@ export default function Dashboard() {
                       color: "hsl(var(--chart-1))",
                     },
                   }}
-                  className="h-[300px]"
+                  className="h-[200px] sm:h-[250px] md:h-[300px]"
                 >
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -244,12 +199,13 @@ export default function Dashboard() {
                         data={pieData}
                         cx="50%"
                         cy="50%"
-                        outerRadius={90}
+                        outerRadius={60}
                         fill="#8884d8"
                         dataKey="value"
                         label={({ name, percent }) =>
                           `${name} ${((percent || 0) * 100).toFixed(0)}%`
                         }
+                        labelLine={false}
                       >
                         {pieData.map((entry, index) => (
                           <Cell
@@ -284,7 +240,7 @@ export default function Dashboard() {
                       color: "hsl(var(--chart-2))",
                     },
                   }}
-                  className="h-[300px]"
+                  className="h-[200px] sm:h-[250px] md:h-[300px]"
                 >
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={monthlyData}>
@@ -294,12 +250,12 @@ export default function Dashboard() {
                       <Bar
                         dataKey="income"
                         fill="var(--color-chart-1)"
-                        radius={[6, 6, 0, 0]}
+                        radius={[4, 4, 0, 0]}
                       />
                       <Bar
                         dataKey="expenses"
                         fill="var(--color-chart-2)"
-                        radius={[6, 6, 0, 0]}
+                        radius={[4, 4, 0, 0]}
                       />
                     </BarChart>
                   </ResponsiveContainer>

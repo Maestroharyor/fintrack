@@ -66,29 +66,17 @@ export default function GoalsPage() {
     totalTarget > 0 ? (totalCurrent / totalTarget) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-green-600 flex items-center justify-center">
-                <Target className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">Goals</h1>
-                <p className="text-sm text-muted-foreground">
-                  Track your financial goals and savings targets
-                </p>
-              </div>
-            </div>
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Goal
-                </Button>
-              </DialogTrigger>
+    <div className="max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
+        {/* Add Goal Button */}
+        <div className="flex justify-end">
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Goal
+              </Button>
+            </DialogTrigger>
               <DialogContent className="w-[500px]">
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-3 text-lg">
@@ -182,11 +170,7 @@ export default function GoalsPage() {
               </DialogContent>
             </Dialog>
           </div>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6 space-y-6">
+        {/* Content */}
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className="border shadow-sm">

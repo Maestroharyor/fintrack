@@ -68,10 +68,8 @@ export default function MorePage() {
   ];
 
   return (
-    <div className="p-4 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">More</h1>
-      </div>
+    <div className="max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
 
       {/* Main Menu Items */}
       <div className="space-y-4">
@@ -166,6 +164,7 @@ export default function MorePage() {
           </p>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

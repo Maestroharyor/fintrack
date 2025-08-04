@@ -27,7 +27,7 @@ import {
   useTransactions,
   useFinanceActions,
 } from "@/lib/store";
-import { PieChart, Plus, Target } from "lucide-react";
+import { Target, Plus } from "lucide-react";
 
 export default function BudgetPage() {
   const budgets = useBudgets();
@@ -86,86 +86,70 @@ export default function BudgetPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-yellow-600 flex items-center justify-center">
-                <PieChart className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">Budget</h1>
-                <p className="text-sm text-muted-foreground">
-                  Manage your monthly budgets
-                </p>
-              </div>
-            </div>
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Plus className="h-4 w-4 mr-2" />
+    <div className="max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
+        {/* Add Budget Button */}
+        <div className="flex justify-end">
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Budget
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="w-[400px]">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-3 text-lg">
+                  <div className="h-8 w-8 rounded-lg bg-yellow-600 flex items-center justify-center">
+                    <Target className="h-4 w-4 text-white" />
+                  </div>
+                  Add New Budget
+                </DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="category">Category</Label>
+                  <Select
+                    value={formData.category}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, category: value })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {settings.categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="amount">Budget Amount</Label>
+                  <Input
+                    id="amount"
+                    type="number"
+                    placeholder="0.00"
+                    value={formData.amount}
+                    onChange={(e) =>
+                      setFormData({ ...formData, amount: e.target.value })
+                    }
+                    step="0.01"
+                    min="0"
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full">
                   Add Budget
                 </Button>
-              </DialogTrigger>
-              <DialogContent className="w-[400px]">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-3 text-lg">
-                    <div className="h-8 w-8 rounded-lg bg-yellow-600 flex items-center justify-center">
-                      <Target className="h-4 w-4 text-white" />
-                    </div>
-                    Add New Budget
-                  </DialogTitle>
-                </DialogHeader>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
-                    <Select
-                      value={formData.category}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, category: value })
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {settings.categories.map((category) => (
-                          <SelectItem key={category} value={category}>
-                            {category}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="amount">Budget Amount</Label>
-                    <Input
-                      id="amount"
-                      type="number"
-                      placeholder="0.00"
-                      value={formData.amount}
-                      onChange={(e) =>
-                        setFormData({ ...formData, amount: e.target.value })
-                      }
-                      step="0.01"
-                      min="0"
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Add Budget
-                  </Button>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="p-6 space-y-6">
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className="border shadow-sm">

@@ -34,7 +34,7 @@ export function MonthSelector() {
         <ChevronLeft className="h-4 w-4" />
       </Button>
 
-      <h2 className="text-lg font-semibold min-w-[140px] text-center">
+      <h2 className="text-sm sm:text-lg font-semibold w-fit sm:min-w-[140px] text-center">
         {formatMonth(currentMonth)}
       </h2>
 

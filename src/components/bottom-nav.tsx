@@ -32,7 +32,7 @@ export function BottomNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex flex-col items-center gap-1 px-4 py-2 text-xs font-medium transition-all duration-300 rounded-xl relative group",
+                "flex flex-col items-center gap-1 px-2 sm:px-4 py-2 text-xs font-medium transition-all duration-300 rounded-xl relative group",
                 isActive
                   ? "text-blue-600 dark:text-blue-400"
                   : "text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400"
@@ -54,7 +54,9 @@ export function BottomNav() {
                   )}
                 />
               </div>
-              <span className="relative z-10 font-medium">{item.label}</span>
+              <span className="relative z-10 font-medium text-xs sm:text-sm">
+                {item.label}
+              </span>
               {isActive && (
                 <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gradient-primary rounded-full" />
               )}

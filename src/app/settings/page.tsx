@@ -73,14 +73,8 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
-      <MobileHeader title="Settings" />
-
-      <div className="p-4 space-y-6">
-        <div className="hidden md:flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Settings</h1>
-        </div>
-
+    <div className="max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
         {/* Theme Settings */}
         <Card className="w-full">
           <CardHeader>
@@ -91,7 +85,7 @@ export default function SettingsPage() {
               <Label htmlFor="theme">Theme</Label>
               <div className="flex items-center gap-2">
                 <Button
-                  variant={theme === "light" ? "default" : "outline-solid"}
+                  variant={theme === "light" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setTheme("light")}
                 >
@@ -99,7 +93,7 @@ export default function SettingsPage() {
                   Light
                 </Button>
                 <Button
-                  variant={theme === "dark" ? "default" : "outline-solid"}
+                  variant={theme === "dark" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setTheme("dark")}
                 >
@@ -107,7 +101,7 @@ export default function SettingsPage() {
                   Dark
                 </Button>
                 <Button
-                  variant={theme === "system" ? "default" : "outline-solid"}
+                  variant={theme === "system" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setTheme("system")}
                 >

@@ -32,7 +32,7 @@ export default function ClientLayout({
             children
           ) : (
             <SidebarProvider>
-              <div className="flex min-h-screen bg-background w-full">
+              <div className="flex min-h-screen bg-background w-full overflow-x-hidden">
                 <DesktopNav />
                 <main className="flex-1 pb-20 md:pb-0 relative">
                   {children}

@@ -67,18 +67,10 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
-      <MobileHeader title="Notifications" />
-
-      <div className="p-4 space-y-6">
-        <div className="hidden md:flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Notifications</h1>
-          <Button variant="outline" size="sm">
-            Mark All as Read
-          </Button>
-        </div>
-
-        <div className="flex md:hidden justify-end">
+    <div className="max-w-7xl mx-auto">
+      <div className="p-6 space-y-6">
+        {/* Mark All as Read Button */}
+        <div className="flex justify-end">
           <Button variant="outline" size="sm">
             Mark All as Read
           </Button>

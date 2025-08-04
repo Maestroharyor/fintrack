@@ -72,7 +72,7 @@ export function ExpenseCategoriesChart() {
           <CardTitle>Expense Categories</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-[200px] text-muted-foreground">
+          <div className="flex items-center justify-center h-[150px] sm:h-[200px] text-muted-foreground">
             <p>No expense data for this month</p>
           </div>
         </CardContent>
@@ -86,16 +86,16 @@ export function ExpenseCategoriesChart() {
         <CardTitle>Expense Categories</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px]">
+        <div className="h-[200px] sm:h-[250px] md:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={categoryData}
                 cx="50%"
                 cy="50%"
-                innerRadius={60}
-                outerRadius={100}
-                paddingAngle={2}
+                innerRadius={40}
+                outerRadius={80}
+                paddingAngle={1}
                 dataKey="value"
               >
                 {categoryData.map((entry, index) => (
